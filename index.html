@@ -1,0 +1,4830 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Пряжная сказка</title>
+
+    <!-- =========================
+         СКАЗОЧНЫЕ ШРИФТЫ
+    ========================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =========================
+           ОСНОВА
+        ========================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8f1e5;
+            color: #59463a;
+            font-family: "EB Garamond", serif;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        :root {
+            --cream: #f8f1e5;
+            --cream-light: #fffaf2;
+            --beige: #eadbc7;
+            --beige-dark: #d8c2a8;
+            --brown: #59463a;
+            --brown-light: #806a58;
+            --gold: #b09163;
+            --white: #fffdf8;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(248, 241, 229, 0.96);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(89, 70, 58, 0.12);
+        }
+
+        .header-inner {
+            max-width: 1450px;
+            min-height: 92px;
+
+            margin: 0 auto;
+            padding: 14px 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 145px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 28px;
+            flex: 1;
+        }
+
+        nav a {
+            position: relative;
+
+            font-family: "Playfair Display", serif;
+            font-size: 15px;
+
+            color: var(--brown);
+
+            white-space: nowrap;
+            transition: 0.3s ease;
+        }
+
+        nav a::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+            height: 1px;
+
+            background: var(--gold);
+
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .round-button {
+            width: 44px;
+            height: 44px;
+
+            border: 1px solid rgba(89, 70, 58, 0.2);
+            border-radius: 50%;
+
+            background: rgba(255, 253, 248, 0.75);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+            position: relative;
+        }
+
+        .round-button:hover {
+            background: var(--beige);
+            transform: translateY(-2px);
+        }
+
+        .round-button svg {
+            width: 20px;
+            height: 20px;
+
+            fill: none;
+            stroke: var(--brown);
+            stroke-width: 1.6;
+        }
+
+        /* СЧЁТЧИК КОРЗИНЫ */
+
+        .cart-count {
+            position: absolute;
+
+            top: -5px;
+            right: -4px;
+
+            min-width: 21px;
+            height: 21px;
+
+            padding: 0 5px;
+
+            border-radius: 50%;
+
+            background: var(--brown);
+            color: white;
+
+            font-family: "Playfair Display", serif;
+            font-size: 11px;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            line-height: 1;
+        }
+
+        .cart-count.active {
+            display: flex;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: calc(100vh - 92px);
+
+            max-width: 1450px;
+            margin: 0 auto;
+
+            padding: 65px 55px 75px;
+
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+
+            align-items: center;
+
+            gap: 65px;
+        }
+
+        .hero-text {
+            padding-left: 35px;
+        }
+
+        .decorative-small {
+            font-family: "Great Vibes", cursive;
+            font-size: 31px;
+
+            color: var(--gold);
+
+            margin-bottom: 8px;
+        }
+
+        .hero h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 600;
+
+            font-size: clamp(58px, 6vw, 92px);
+            line-height: 0.95;
+
+            color: var(--brown);
+
+            margin-bottom: 35px;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            font-size: 0.58em;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            max-width: 590px;
+
+            font-size: 21px;
+            line-height: 1.65;
+
+            color: var(--brown-light);
+
+            margin-bottom: 35px;
+            text-indent: 35px;
+        }
+
+        .hero-description p {
+            margin-bottom: 24px;
+            text-indent: 35px;
+        }
+
+        .hero-description p:last-child {
+            margin-bottom: 0;
+            text-indent: 35px;
+        }
+
+        .main-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 31px;
+
+            border: 1px solid var(--brown);
+            border-radius: 50px;
+
+            background: var(--brown);
+            color: var(--white);
+
+            font-family: "Playfair Display", serif;
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .main-button:hover {
+            background: transparent;
+            color: var(--brown);
+
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            height: 650px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image::before {
+            content: "";
+
+            position: absolute;
+
+            width: 80%;
+            height: 80%;
+
+            border-radius: 50%;
+
+            background: #eadbc7;
+
+            z-index: -1;
+        }
+
+        .hero-image img {
+            width: 88%;
+            height: 100%;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 20px 25px rgba(89, 70, 58, 0.13)
+                );
+        }
+
+
+        /* =========================
+           ОБЩИЕ СЕКЦИИ
+        ========================== */
+
+        section {
+            max-width: 1450px;
+
+            margin: 0 auto;
+
+            padding: 110px 55px;
+        }
+
+        .section-label {
+            font-family: "Great Vibes", cursive;
+
+            color: var(--gold);
+
+            font-size: 42px;
+
+            text-align: center;
+
+            margin-bottom: 4px;
+        }
+
+        .section-title {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(42px, 4vw, 62px);
+
+            line-height: 1.05;
+
+            text-align: center;
+
+            font-weight: 600;
+
+            color: var(--brown);
+
+            margin-bottom: 45px;
+        }
+
+
+        /* =========================
+           ИСТОРИЯ
+        ========================== */
+
+        .story {
+            max-width: 980px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+        .story p {
+            font-size: 22px;
+
+            line-height: 1.8;
+
+            color: var(--brown-light);
+
+            margin-bottom: 24px;
+        }
+
+
+        /* =========================
+           ИГРУШКИ С ИСТОРИЕЙ
+        ========================== */
+
+        .history-section {
+            max-width: none;
+
+            background: rgba(234, 219, 199, 0.28);
+        }
+
+        .history-content {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+        .history-content p {
+            font-size: 23px;
+
+            line-height: 1.8;
+
+            color: var(--brown-light);
+        }
+
+
+        /* =========================================================
+           КАТАЛОГ КАТЕГОРИЙ
+        ========================================================= */
+
+        .catalog-grid {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 22px;
+
+            margin-top: 50px;
+        }
+
+        .catalog-card {
+            position: relative;
+
+            height: 390px;
+
+            overflow: hidden;
+
+            border-radius: 4px;
+
+            background: var(--white);
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 35px rgba(89, 70, 58, 0.08);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 20px 45px rgba(89, 70, 58, 0.15);
+        }
+
+        .catalog-card img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.5s ease;
+        }
+
+        .catalog-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .catalog-overlay {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 55px 20px 22px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(58, 44, 35, 0.82)
+                );
+
+            color: white;
+        }
+
+        .catalog-overlay h3 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 30px;
+
+            line-height: 1;
+        }
+
+        .catalog-overlay span {
+            font-size: 15px;
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================================================
+           КАТАЛОГ ТОВАРОВ
+        ========================================================= */
+
+        .products-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2500;
+
+            background: rgba(48, 37, 30, 0.84);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 35px;
+        }
+
+        .products-overlay.active {
+            display: flex;
+        }
+
+        .products-window {
+            position: relative;
+
+            width: min(1250px, 95vw);
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: var(--cream);
+
+            padding: 45px;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        .products-window::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .products-window::-webkit-scrollbar-thumb {
+            background: var(--beige-dark);
+            border-radius: 10px;
+        }
+
+        .products-title {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 48px;
+
+            font-weight: 600;
+
+            text-align: center;
+
+            color: var(--brown);
+
+            margin-bottom: 35px;
+        }
+
+        .products-grid {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--cream-light);
+
+            border: 1px solid rgba(89, 70, 58, 0.12);
+
+            border-radius: 5px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+            box-shadow:
+                0 8px 25px rgba(89, 70, 58, 0.06);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(89, 70, 58, 0.13);
+        }
+
+        .product-image {
+    height: 260px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.product-info {
+    position: relative;
+    background: var(--cream-light);
+    padding: 15px;
+    z-index: 2;
+}
+
+.product-name {
+    position: relative;
+    z-index: 3;
+}
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .product-name {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 24px;
+
+            line-height: 1.1;
+
+            color: var(--brown);
+
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-family: "Playfair Display", serif;
+
+            font-size: 16px;
+
+            color: var(--gold);
+        }
+
+
+        /* =========================================================
+           КНОПКА ЗАКРЫТИЯ
+        ========================================================= */
+
+        .catalog-close {
+            position: absolute;
+
+            top: 15px;
+            right: 18px;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid rgba(89, 70, 58, 0.2);
+
+            border-radius: 50%;
+
+            background: var(--cream-light);
+
+            color: var(--brown);
+
+            font-family: Arial, sans-serif;
+
+            font-size: 28px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 20;
+
+            transition: 0.3s ease;
+        }
+
+        .catalog-close:hover {
+            transform: rotate(90deg);
+
+            background: var(--beige);
+        }
+
+
+        /* =========================================================
+           БОЛЬШАЯ КАРТОЧКА ТОВАРА
+        ========================================================= */
+
+        .product-detail-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 4000;
+
+            background: rgba(48, 37, 30, 0.86);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .product-detail-overlay.active {
+            display: flex;
+        }
+
+        .product-detail {
+            position: relative;
+
+            width: min(850px, 94vw);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: var(--cream-light);
+
+            border-radius: 8px;
+
+            padding: 45px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 45px;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .detail-image {
+            min-height: 430px;
+
+            border-radius: 5px;
+
+            background: #eadbc7;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 160px;
+        }
+
+        .detail-info {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .detail-category {
+            font-family: "Great Vibes", cursive;
+
+            font-size: 31px;
+
+            color: var(--gold);
+
+            margin-bottom: 8px;
+        }
+
+        .detail-name {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 50px;
+
+            line-height: 1.05;
+
+            color: var(--brown);
+
+            margin-bottom: 18px;
+        }
+
+        .detail-price {
+            font-family: "Playfair Display", serif;
+
+            font-size: 24px;
+
+            color: var(--gold);
+
+            margin-bottom: 25px;
+        }
+
+        .detail-description {
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: var(--brown-light);
+
+            margin-bottom: 30px;
+        }
+
+        .detail-add-button {
+            width: 100%;
+        }
+
+
+        /* =========================================================
+           ПОДАРОЧНЫЙ АЛЬБОМ
+        ========================================================= */
+
+        .gift-book-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 3000;
+
+            background: rgba(48, 37, 30, 0.84);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 40px;
+        }
+
+        .gift-book-overlay.active {
+            display: flex;
+        }
+
+        .gift-book-wrapper {
+            position: relative;
+
+            width: min(1100px, 90vw);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gift-book {
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 1.45 / 1;
+
+            display: flex;
+
+            filter:
+                drop-shadow(
+                    0 25px 45px rgba(0, 0, 0, 0.28)
+                );
+        }
+
+        .book-page {
+            position: relative;
+
+            width: 50%;
+            height: 100%;
+
+            overflow: hidden;
+
+            background: #fffaf2;
+        }
+
+        .book-page-left {
+            border-radius: 8px 0 0 8px;
+
+            box-shadow:
+                inset -18px 0 25px rgba(89, 70, 58, 0.08);
+        }
+
+        .book-page-right {
+            border-radius: 0 8px 8px 0;
+
+            box-shadow:
+                inset 18px 0 25px rgba(89, 70, 58, 0.08);
+        }
+
+        .book-page img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .gift-book::before {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: 0;
+
+            transform: translateX(-50%);
+
+            width: 2px;
+            height: 100%;
+
+            background: rgba(89, 70, 58, 0.18);
+
+            z-index: 10;
+        }
+
+        .gift-book::after {
+            content: "";
+
+            position: absolute;
+
+            left: calc(50% - 16px);
+            top: 0;
+
+            width: 32px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(89, 70, 58, 0.12),
+                    transparent 45%,
+                    rgba(89, 70, 58, 0.08)
+                );
+
+            pointer-events: none;
+
+            z-index: 11;
+        }
+
+        .turning-page {
+            display: none;
+        }
+
+
+        /* =========================
+           СТРЕЛКИ
+        ========================== */
+
+        .book-arrow {
+            position: absolute;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 54px;
+            height: 54px;
+
+            border: 1px solid rgba(255, 253, 248, 0.6);
+
+            border-radius: 50%;
+
+            background: rgba(255, 253, 248, 0.92);
+
+            color: var(--brown);
+
+            font-family: Arial, sans-serif;
+
+            font-size: 42px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 50;
+
+            transition: 0.3s ease;
+        }
+
+        .book-arrow:hover {
+            background: var(--beige);
+
+            transform:
+                translateY(-50%)
+                scale(1.08);
+        }
+
+        .book-arrow-left {
+            left: -75px;
+        }
+
+        .book-arrow-right {
+            right: -75px;
+        }
+
+        .book-close {
+            position: fixed;
+
+            top: 25px;
+            right: 30px;
+
+            width: 46px;
+            height: 46px;
+
+            border: 1px solid rgba(255, 253, 248, 0.6);
+
+            border-radius: 50%;
+
+            background: rgba(255, 253, 248, 0.95);
+
+            color: var(--brown);
+
+            font-family: Arial, sans-serif;
+
+            font-size: 30px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 100;
+
+            transition: 0.3s ease;
+        }
+
+        .book-close:hover {
+            transform: rotate(90deg);
+
+            background: var(--beige);
+        }
+
+        .book-counter {
+            position: absolute;
+
+            left: 50%;
+            bottom: -48px;
+
+            transform: translateX(-50%);
+
+            color: var(--white);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================================
+           КОРЗИНА
+        ========================================================= */
+
+        .cart-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 5000;
+
+            background: rgba(48, 37, 30, 0.84);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+        }
+
+        .cart-overlay.active {
+            display: flex;
+        }
+
+        .cart-window {
+            position: relative;
+
+            width: min(850px, 95vw);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: var(--cream);
+
+            border-radius: 8px;
+
+            padding: 45px;
+        }
+
+        .cart-title {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 52px;
+
+            text-align: center;
+
+            color: var(--brown);
+
+            margin-bottom: 35px;
+        }
+
+        .cart-empty {
+            text-align: center;
+
+            font-size: 22px;
+
+            color: var(--brown-light);
+
+            padding: 40px 10px;
+        }
+
+        .cart-items {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+        .cart-item {
+            display: grid;
+
+            grid-template-columns: 80px 1fr auto auto auto;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 14px;
+
+            background: var(--cream-light);
+
+            border: 1px solid rgba(89, 70, 58, 0.1);
+
+            border-radius: 5px;
+        }
+
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+
+            border-radius: 4px;
+
+            background: var(--beige);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+        }
+
+        .cart-item-name {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 24px;
+
+            color: var(--brown);
+
+            line-height: 1.1;
+        }
+
+        .cart-item-price {
+            font-family: "Playfair Display", serif;
+
+            font-size: 15px;
+
+            color: var(--gold);
+
+            margin-top: 4px;
+        }
+
+        .quantity-control {
+            display: flex;
+
+            align-items: center;
+
+            border: 1px solid rgba(89, 70, 58, 0.2);
+
+            border-radius: 50px;
+
+            overflow: hidden;
+        }
+
+        .quantity-button {
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            background: transparent;
+
+            color: var(--brown);
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .quantity-button:hover {
+            background: var(--beige);
+        }
+
+        .quantity-value {
+            min-width: 32px;
+
+            text-align: center;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 14px;
+        }
+
+        .cart-item-total {
+            min-width: 90px;
+
+            text-align: right;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 15px;
+
+            color: var(--brown);
+        }
+
+        .remove-cart-item {
+            width: 34px;
+            height: 34px;
+
+            border: 1px solid rgba(89, 70, 58, 0.15);
+
+            border-radius: 50%;
+
+            background: transparent;
+
+            color: var(--brown);
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .remove-cart-item:hover {
+            background: var(--beige);
+        }
+
+        .cart-bottom {
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid rgba(89, 70, 58, 0.15);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .cart-total-label {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 31px;
+
+            color: var(--brown);
+        }
+
+        .cart-total-value {
+            font-family: "Playfair Display", serif;
+
+            font-size: 22px;
+
+            color: var(--gold);
+
+            margin-left: 8px;
+        }
+
+
+        /* =========================================================
+           СОЗДАТЬ СВОЮ ИГРУШКУ
+        ========================================================= */
+
+        .custom-section {
+            max-width: none;
+
+            background: var(--cream-light);
+        }
+
+        .custom-grid {
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: 0.8fr 1fr 0.8fr;
+
+            gap: 45px;
+
+            align-items: center;
+        }
+
+        .custom-image {
+            overflow: hidden;
+        }
+
+        .custom-image img {
+            width: 100%;
+            height: auto;
+
+            display: block;
+
+            object-fit: contain;
+        }
+
+        .custom-text {
+            text-align: center;
+        }
+
+        .custom-text h3 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 48px;
+
+            line-height: 1.05;
+
+            margin-bottom: 25px;
+        }
+
+        .custom-text p {
+            font-size: 21px;
+
+            color: var(--brown-light);
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================================================
+           БЛАГОТВОРИТЕЛЬНОСТЬ
+        ========================================================= */
+
+        .charity-section {
+            max-width: none;
+
+            background: rgba(234, 219, 199, 0.28);
+        }
+
+        .charity-grid {
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: 0.8fr 1fr 0.8fr;
+
+            gap: 45px;
+
+            align-items: center;
+        }
+
+        .charity-image {
+            height: 470px;
+        }
+
+        .charity-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 3px;
+        }
+
+        .charity-text {
+            text-align: center;
+        }
+
+        .charity-text h3 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 48px;
+
+            line-height: 1.05;
+
+            margin-bottom: 25px;
+        }
+
+        .charity-text p {
+            font-size: 20px;
+
+            line-height: 1.7;
+
+            color: var(--brown-light);
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================================================
+           КАК ЗАКАЗАТЬ
+        ========================================================= */
+
+        .order-section {
+            max-width: 1200px;
+        }
+
+        .order-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .order-card {
+            padding: 50px 45px;
+
+            background: var(--cream-light);
+
+            border:
+                1px solid rgba(89, 70, 58, 0.12);
+
+            text-align: center;
+        }
+
+        .order-card h3 {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 42px;
+
+            line-height: 1.1;
+
+            margin-bottom: 22px;
+        }
+
+        .order-card p {
+            font-size: 19px;
+
+            color: var(--brown-light);
+
+            line-height: 1.7;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================================================
+           КОНТАКТЫ
+        ========================================================= */
+
+        .social-section {
+            text-align: center;
+
+            padding-top: 70px;
+            padding-bottom: 100px;
+        }
+
+        .socials {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 70px;
+
+            margin-top: 35px;
+        }
+
+        .social {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 12px;
+
+            transition: 0.3s ease;
+        }
+
+        .social:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-circle {
+            width: 76px;
+            height: 76px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(89, 70, 58, 0.25);
+
+            background: var(--cream-light);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-circle svg {
+            width: 30px;
+            height: 30px;
+
+            fill: none;
+
+            stroke: var(--brown);
+
+            stroke-width: 1.5;
+        }
+
+        .social span {
+            font-family: "Playfair Display", serif;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            border-top:
+                1px solid rgba(89, 70, 58, 0.12);
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            background: var(--cream);
+        }
+
+        .footer-logo {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 32px;
+
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================================
+           АДАПТАЦИЯ
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .catalog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero {
+                gap: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .header-inner {
+                min-height: auto;
+
+                padding: 15px 20px;
+
+                flex-wrap: wrap;
+            }
+
+            .logo img {
+                width: 120px;
+            }
+
+            nav {
+                order: 3;
+
+                width: 100%;
+
+                overflow-x: auto;
+
+                justify-content: flex-start;
+
+                padding-bottom: 5px;
+            }
+
+            nav a {
+                flex-shrink: 0;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                padding: 55px 25px;
+
+                text-align: center;
+            }
+
+            .hero-text {
+                padding-left: 0;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                height: 430px;
+            }
+
+            section {
+                padding: 75px 25px;
+            }
+
+            .story p,
+            .history-content p {
+                font-size: 19px;
+            }
+
+            .catalog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .catalog-card {
+                height: 330px;
+            }
+
+            .products-window {
+                padding: 35px 20px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-detail {
+                grid-template-columns: 1fr;
+
+                padding: 35px 25px;
+
+                gap: 25px;
+            }
+
+            .detail-image {
+                min-height: 300px;
+
+                font-size: 120px;
+            }
+
+            .detail-name {
+                font-size: 42px;
+            }
+
+            .custom-grid,
+            .charity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .custom-image,
+            .charity-image {
+                height: 400px;
+            }
+
+            .custom-text {
+                order: 2;
+            }
+
+            .order-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .socials {
+                gap: 35px;
+            }
+
+            .gift-book-overlay {
+                padding: 20px;
+            }
+
+            .gift-book-wrapper {
+                width: 94vw;
+            }
+
+            .gift-book {
+                aspect-ratio: 1.15 / 1;
+            }
+
+            .book-arrow {
+                width: 44px;
+                height: 44px;
+
+                font-size: 34px;
+            }
+
+            .book-arrow-left {
+                left: -8px;
+            }
+
+            .book-arrow-right {
+                right: -8px;
+            }
+
+            .book-close {
+                top: 15px;
+                right: 15px;
+            }
+
+            .book-counter {
+                bottom: -35px;
+            }
+
+            .cart-window {
+                padding: 35px 20px;
+            }
+
+            .cart-item {
+                grid-template-columns: 65px 1fr auto;
+
+                gap: 12px;
+            }
+
+            .cart-item-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .cart-item-total {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .remove-cart-item {
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            .quantity-control {
+                grid-column: 2;
+                width: max-content;
+            }
+
+            .cart-bottom {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                text-align: center;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .header-actions {
+                gap: 5px;
+            }
+
+            .round-button {
+                width: 38px;
+                height: 38px;
+            }
+
+            .hero h1 {
+                font-size: 54px;
+            }
+
+            .hero-description {
+                font-size: 18px;
+            }
+
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .catalog-card {
+                height: 380px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-title {
+                font-size: 40px;
+            }
+
+            .detail-name {
+                font-size: 36px;
+            }
+
+            .detail-image {
+                min-height: 250px;
+
+                font-size: 100px;
+            }
+
+            .socials {
+                gap: 25px;
+            }
+
+            .section-label {
+                font-size: 36px;
+            }
+
+            .book-arrow {
+                width: 40px;
+                height: 40px;
+
+                font-size: 30px;
+            }
+
+        }
+
+
+        /* =========================================================
+           МОДАЛЬНОЕ ОКНО — СОЗДАТЬ СВОЮ ИГРУШКУ
+        ========================================================== */
+
+
+        /* =========================================================
+           ПОИСК ПО КАТАЛОГУ
+        ========================================================= */
+
+        .search-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(48, 37, 30, 0.72);
+            padding: 25px;
+        }
+
+        .search-overlay.active {
+            display: flex;
+        }
+
+        .search-window {
+            position: relative;
+            width: min(900px, 95vw);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--cream-light);
+            padding: 48px;
+            border-radius: 8px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+        }
+
+        .search-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 48px;
+            line-height: 1;
+            text-align: center;
+            color: var(--brown);
+            margin: 8px 0 28px;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .search-input-wrap svg {
+            position: absolute;
+            left: 18px;
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: var(--brown-light);
+            stroke-width: 1.7;
+            pointer-events: none;
+        }
+
+        .search-input-wrap input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 17px 20px 17px 54px;
+            border: 1px solid rgba(89, 70, 58, 0.2);
+            border-radius: 4px;
+            background: var(--white);
+            color: var(--brown);
+            font-family: "EB Garamond", serif;
+            font-size: 20px;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .search-input-wrap input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(176, 145, 99, 0.12);
+        }
+
+        .search-input-wrap input::placeholder {
+            color: var(--brown-light);
+            opacity: 0.7;
+        }
+
+        .search-hint {
+            text-align: center;
+            color: var(--brown-light);
+            font-family: "EB Garamond", serif;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .search-result-card {
+            background: var(--cream);
+            border: 1px solid rgba(89, 70, 58, 0.12);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .search-result-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(89, 70, 58, 0.12);
+        }
+
+        .search-result-image {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-size: 58px;
+            background: var(--cream-light);
+        }
+
+        .search-result-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .search-result-info {
+            padding: 13px 14px 15px;
+        }
+
+        .search-result-name {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            line-height: 1.1;
+            color: var(--brown);
+            margin-bottom: 6px;
+        }
+
+        .search-result-category {
+            font-family: "EB Garamond", serif;
+            font-size: 15px;
+            color: var(--brown-light);
+            margin-bottom: 5px;
+        }
+
+        .search-result-price {
+            font-family: "Playfair Display", serif;
+            font-size: 15px;
+            color: var(--gold);
+        }
+
+        .search-no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 35px 10px;
+            color: var(--brown-light);
+            font-family: "EB Garamond", serif;
+            font-size: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .search-window {
+                padding: 40px 25px 30px;
+            }
+
+            .search-results {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .search-window {
+                width: 94vw;
+                padding: 38px 18px 24px;
+            }
+
+            .search-title {
+                font-size: 38px;
+            }
+
+            .search-results {
+                grid-template-columns: 1fr;
+            }
+
+            .search-result-image {
+                height: 220px;
+            }
+        }
+
+
+        #customToyModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            background: rgba(48, 37, 30, 0.72);
+            padding: 25px;
+        }
+
+        #customToyModal.active {
+            display: flex;
+        }
+
+        .custom-toy-modal {
+            position: relative;
+            width: min(600px, 94vw);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--cream-light);
+            padding: 45px;
+            border-radius: 10px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.30);
+        }
+
+        .custom-toy-modal h2 {
+            margin: 0 0 30px;
+            text-align: center;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 48px;
+            line-height: 1.05;
+            font-weight: 600;
+            color: var(--brown);
+        }
+
+        .custom-toy-field {
+            margin-bottom: 20px;
+        }
+
+        .custom-toy-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: "EB Garamond", serif;
+            font-size: 20px;
+            line-height: 1.3;
+            color: var(--brown);
+        }
+
+        .custom-toy-field input {
+            display: block;
+            width: 100%;
+            height: 50px;
+            padding: 10px 15px;
+            border: 1px solid rgba(89, 70, 58, 0.25);
+            border-radius: 7px;
+            background: var(--white);
+            color: var(--brown);
+            font-family: "EB Garamond", serif;
+            font-size: 18px;
+            outline: none;
+        }
+
+        .custom-toy-field input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(176, 145, 99, 0.12);
+        }
+
+        .custom-toy-field input::placeholder {
+            color: rgba(89, 70, 58, 0.48);
+        }
+
+        .custom-toy-submit {
+            width: 100%;
+            margin-top: 10px;
+            padding: 15px 25px;
+            border: 1px solid var(--brown);
+            border-radius: 50px;
+            background: var(--brown);
+            color: var(--white);
+            font-family: "Playfair Display", serif;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .custom-toy-submit:hover {
+            background: transparent;
+            color: var(--brown);
+            transform: translateY(-2px);
+        }
+
+        .custom-toy-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(89, 70, 58, 0.20);
+            border-radius: 50%;
+            background: var(--cream-light);
+            color: var(--brown);
+            font-family: Arial, sans-serif;
+            font-size: 27px;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .custom-toy-close:hover {
+            transform: rotate(90deg);
+            background: var(--beige);
+        }
+
+        @media (max-width: 600px) {
+            .custom-toy-modal {
+                padding: 35px 22px 25px;
+            }
+
+            .custom-toy-modal h2 {
+                font-size: 40px;
+                padding: 0 25px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="#home" class="logo">
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/logo.png"
+                alt="Пряжная сказка"
+            >
+
+        </a>
+
+
+        <nav>
+
+            <a href="#home">
+                Главная
+            </a>
+
+            <a href="#catalog">
+                Каталог
+            </a>
+
+            <a href="#about">
+                О нас
+            </a>
+
+            <a href="javascript:void(0)" onclick="openCustomToyForm()">
+                Создать свою игрушку
+            </a>
+
+            <a href="#charity">
+                Благотворительность
+            </a>
+
+            <a href="#contacts">
+                Контакты
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+            <!-- ПОИСК -->
+
+            <button
+                class="round-button"
+                aria-label="Поиск"
+                onclick="openSearch()"
+            >
+                <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="6.5"/>
+                    <path d="M16 16l5 5"/>
+                </svg>
+            </button>
+
+
+            <!-- КОРЗИНА -->
+
+            <button
+                class="round-button"
+                aria-label="Корзина"
+                onclick="openCart()"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M4 7h16l-1 12H5L4 7Z"/>
+
+                    <path d="M8 7a4 4 0 0 1 8 0"/>
+
+                </svg>
+
+                <span
+                    class="cart-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-text">
+
+        <div class="decorative-small">
+            Добро пожаловать
+        </div>
+
+        <h1>
+            Маленькие вещи.
+            <span>
+                Большая история.
+            </span>
+        </h1>
+
+        <div class="hero-description">
+
+            <p>
+                Есть вещи, которые выбирают просто потому, что они красивые.
+            </p>
+
+            <p>
+                А есть те, к которым хочется возвращаться. Те, у которых появляется своё место, свой характер и однажды — своя история.
+            </p>
+
+            <p>
+                Игрушки, брелоки и подарочные наборы рождаются вручную — из пряжи, терпения и огромного желания создать что-то по-настоящему особенное.
+            </p>
+
+        </div>
+
+        <a
+            href="#catalog"
+            class="main-button"
+        >
+            Выбрать игрушку
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/bunny.png"
+            alt="Вязаная игрушка"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section id="about">
+
+    <div class="section-label">
+        Наша история
+    </div>
+
+    <h2 class="section-title">
+        Здесь начинается ваша история
+    </h2>
+
+    <div class="story">
+
+        <p>
+            Когда появилась «Пряжная сказка», мы хотели создавать не просто вязаные игрушки.
+        </p>
+
+        <p>
+            Нам хотелось, чтобы у каждой из них было что-то своё. Не только внешний вид, но и характер, настроение, маленькая тайна.
+        </p>
+
+        <p>
+            Так появилась идея, что наши игрушки не существуют по отдельности.
+        </p>
+
+        <p>
+            У каждой есть своё место в одной большой истории.
+        </p>
+
+        <p>
+            Говорят, где-то существует тропа, которая появляется не для всех.
+        </p>
+
+        <p>
+            Она проходит через места, о которых не рассказывают в обычных сказках, и однажды может привести туда, где начинается совсем другая история.
+        </p>
+
+        <p>
+            Именно эта тропа однажды объединила наших будущих героев.
+        </p>
+
+        <p>
+            Мы пока не будем рассказывать, кто встретится на её пути.
+        </p>
+
+        <p>
+            Некоторые истории лучше открывать постепенно.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TOYS HISTORY
+========================================================= -->
+
+<section class="history-section">
+
+    <div class="section-label">
+        Ручная работа
+    </div>
+
+    <h2 class="section-title">
+        Игрушки с историей
+    </h2>
+
+    <div class="history-content">
+
+        <p>
+            Каждая наша игрушка создаётся вручную — от первого петельного ряда до последних деталей.
+        </p>
+
+        <p>
+            Вы выбираете не просто игрушку, а маленького героя, которому однажды можно будет придумать свою историю.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CATALOG
+========================================================= -->
+
+<section id="catalog">
+
+    <div class="section-label">
+        Загляните внутрь
+    </div>
+
+    <h2 class="section-title">
+        Наши игрушки
+    </h2>
+
+
+    <div class="catalog-grid">
+
+
+        <!-- ИГРУШКИ -->
+
+        <div
+            class="catalog-card"
+            onclick="openCategory('toys')"
+        >
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/pchela.jpg"
+                alt="Игрушки из хлопка"
+            >
+
+            <div class="catalog-overlay">
+
+                <h3>
+                    Игрушки
+                </h3>
+
+                <span>
+                    из хлопка
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ПОДАРОЧНЫЕ НАБОРЫ -->
+
+        <div
+            class="catalog-card"
+            onclick="openCategory('gifts')"
+        >
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/parazayek.jpg"
+                alt="Подарочные наборы"
+            >
+
+            <div class="catalog-overlay">
+
+                <h3>
+                    Подарочные наборы
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <!-- БРЕЛОКИ -->
+
+        <div
+            class="catalog-card"
+            onclick="openCategory('keychains')"
+        >
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/kitten.jpg"
+                alt="Брелоки"
+            >
+
+            <div class="catalog-overlay">
+
+                <h3>
+                    Брелоки
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <!-- КУКЛЫ -->
+
+        <div
+            class="catalog-card"
+            onclick="openCategory('dolls')"
+        >
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/lava.jpg"
+                alt="Куклы"
+            >
+
+            <div class="catalog-overlay">
+
+                <h3>
+                    Куклы
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <!-- ПЛЮШЕВЫЕ ИГРУШКИ -->
+
+        <div
+            class="catalog-card"
+            onclick="openCategory('plush')"
+        >
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/edinorog.jpg"
+                alt="Плюшевые игрушки"
+            >
+
+            <div class="catalog-overlay">
+
+                <h3>
+                    Плюшевые игрушки
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ОКНО КАТАЛОГА ТОВАРОВ
+========================================================= -->
+
+<div
+    class="products-overlay"
+    id="productsOverlay"
+>
+
+    <div class="products-window">
+
+        <button
+            class="catalog-close"
+            onclick="closeCategory()"
+            aria-label="Закрыть"
+        >
+            ×
+        </button>
+
+
+        <h2
+            class="products-title"
+            id="productsTitle"
+        >
+            Игрушки
+        </h2>
+
+
+        <div
+            class="products-grid"
+            id="productsGrid"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     БОЛЬШАЯ КАРТОЧКА ТОВАРА
+========================================================= -->
+
+<div
+    class="product-detail-overlay"
+    id="productDetailOverlay"
+>
+
+    <div class="product-detail">
+
+        <button
+            class="catalog-close"
+            onclick="closeProductDetail()"
+            aria-label="Закрыть"
+        >
+            ×
+        </button>
+
+
+        <div
+            class="detail-image"
+            id="detailImage"
+        >
+        </div>
+
+
+        <div class="detail-info">
+
+            <div
+                class="detail-category"
+                id="detailCategory"
+            >
+            </div>
+
+            <h2
+                class="detail-name"
+                id="detailName"
+            >
+            </h2>
+
+            <div
+                class="detail-price"
+                id="detailPrice"
+            >
+            </div>
+
+            <p class="detail-description">
+                Небольшая вязаная история, созданная вручную с любовью и вниманием к каждой детали.
+                Позже здесь появится настоящее описание товара.
+            </p>
+
+            <button
+                class="main-button detail-add-button"
+                id="detailAddButton"
+            >
+                Добавить в корзину
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ПОДАРОЧНЫЙ АЛЬБОМ
+========================================================= -->
+
+<div
+    class="gift-book-overlay"
+    id="giftBook"
+>
+
+    <button
+        class="book-close"
+        onclick="closeGiftBook()"
+        aria-label="Закрыть"
+    >
+        ×
+    </button>
+
+
+    <div class="gift-book-wrapper">
+
+        <div class="gift-book">
+
+
+            <div class="book-page book-page-left">
+
+                <img
+                    id="bookLeftImage"
+                    src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/parazayek.jpg"
+                    alt="Пара зайчиков"
+                >
+
+            </div>
+
+
+            <div class="book-page book-page-right">
+
+                <img
+                    id="bookRightImage"
+                    src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/paramishek.jpg"
+                    alt="Пара мишек"
+                >
+
+            </div>
+
+
+            <button
+                class="book-arrow book-arrow-left"
+                onclick="previousGiftPage()"
+                aria-label="Предыдущая страница"
+            >
+                ‹
+            </button>
+
+
+            <button
+                class="book-arrow book-arrow-right"
+                onclick="nextGiftPage()"
+                aria-label="Следующая страница"
+            >
+                ›
+            </button>
+
+
+            <div
+                class="book-counter"
+                id="bookCounter"
+            >
+                2 страницы
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ПОИСК
+========================================================= -->
+
+<div class="search-overlay" id="searchOverlay">
+
+    <div class="search-window">
+
+        <button
+            class="catalog-close"
+            onclick="closeSearch()"
+            aria-label="Закрыть"
+        >×</button>
+
+        <div class="section-label">Найдите своего героя</div>
+
+        <h2 class="search-title">Поиск по каталогу</h2>
+
+        <div class="search-input-wrap">
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"/>
+                <path d="M16 16l5 5"/>
+            </svg>
+
+            <input
+                type="search"
+                id="catalogSearchInput"
+                placeholder="Например: львёнок, мишка, брелок..."
+                autocomplete="off"
+                oninput="searchCatalog()"
+            >
+
+        </div>
+
+        <div class="search-hint" id="searchHint">
+            Начните вводить название игрушки, чтобы увидеть результаты.
+        </div>
+
+        <div class="search-results" id="searchResults"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     КОРЗИНА
+========================================================= -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+>
+
+    <div class="cart-window">
+
+        <button
+            class="catalog-close"
+            onclick="closeCart()"
+            aria-label="Закрыть"
+        >
+            ×
+        </button>
+
+
+        <h2 class="cart-title">
+            Ваша корзина
+        </h2>
+
+
+        <div
+            class="cart-empty"
+            id="cartEmpty"
+        >
+            В корзине пока ничего нет.
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+        </div>
+
+
+        <div
+            class="cart-bottom"
+            id="cartBottom"
+            style="display:none;"
+        >
+
+            <div>
+
+                <span class="cart-total-label">
+                    Итого:
+                </span>
+
+                <span
+                    class="cart-total-value"
+                    id="cartTotal"
+                >
+                    0 ₽
+                </span>
+
+            </div>
+
+
+            <button
+                class="main-button"
+                onclick="checkout()"
+            >
+                Оформить заказ
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     МОДАЛЬНОЕ ОКНО — СОЗДАТЬ СВОЮ ИГРУШКУ
+========================================================= -->
+
+<div
+    class="custom-toy-modal-overlay"
+    id="customToyModal"
+>
+    <div class="custom-toy-modal">
+
+        <button
+            class="custom-toy-close"
+            onclick="closeCustomToyForm()"
+            aria-label="Закрыть"
+        >
+            ×
+        </button>
+
+        <h2>
+            Создать свою игрушку
+        </h2>
+
+        <div class="custom-toy-field">
+            <label for="customToyType">
+                Какую игрушку хотели бы?
+            </label>
+
+            <input
+                type="text"
+                id="customToyType"
+                placeholder="Напишите, какую игрушку вы представляете"
+            >
+        </div>
+
+        <div class="custom-toy-field">
+            <label for="customToySize">
+                Какого размера?
+            </label>
+
+            <input
+                type="text"
+                id="customToySize"
+                placeholder="Например: 20 см"
+            >
+        </div>
+
+        <div class="custom-toy-field">
+            <label for="customToyColors">
+                Каких цветов?
+            </label>
+
+            <input
+                type="text"
+                id="customToyColors"
+                placeholder="Например: белый, розовый и бежевый"
+            >
+        </div>
+
+        <div class="custom-toy-field">
+            <label for="customToyMaterial">
+                Из какого материала?
+            </label>
+
+            <input
+                type="text"
+                id="customToyMaterial"
+                placeholder="Например: хлопок или плюшевая пряжа"
+            >
+        </div>
+
+        <button
+            class="custom-toy-submit"
+            onclick="submitCustomToyForm()"
+        >
+            Отправить заявку
+        </button>
+
+    </div>
+</div>
+
+
+<!-- =========================================================
+     CUSTOM TOY
+========================================================= -->
+
+<section
+    class="custom-section"
+    id="custom"
+>
+
+    <div class="section-label">
+        Особенная история
+    </div>
+
+    <h2 class="section-title">
+        Создать свою игрушку
+    </h2>
+
+
+    <div class="custom-grid">
+
+
+        <div class="custom-image">
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/devdumaet.png"
+                alt="Девушка придумывает игрушку"
+            >
+
+        </div>
+
+
+        <div class="custom-text">
+
+            <h3>
+                А если вашего героя ещё нет?
+            </h3>
+
+            <p>
+                Иногда нужной игрушки просто не существует — пока.
+            </p>
+
+            <p>
+                Расскажите нам, какой вы её представляете, а мы поможем превратить идею в настоящую вязаную игрушку.
+            </p>
+
+            <a
+                href="javascript:void(0)"
+                class="main-button"
+                onclick="openCustomToyForm()"
+            >
+                Создать свою игрушку
+            </a>
+
+        </div>
+
+
+        <div class="custom-image">
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/deviigrushka.png"
+                alt="Девушка держит вязаную игрушку"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CHARITY
+========================================================= -->
+
+<section
+    class="charity-section"
+    id="charity"
+>
+
+    <div class="section-label">
+        Делимся теплом
+    </div>
+
+    <h2 class="section-title">
+        Часть тепла — дальше
+    </h2>
+
+
+    <div class="charity-grid">
+
+
+        <div class="charity-image">
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/process.png"
+                alt="Процесс создания игрушки"
+            >
+
+        </div>
+
+
+        <div class="charity-text">
+
+            <h3>
+                Тепло можно передавать дальше
+            </h3>
+
+            <p>
+                Часть средств от продажи наших изделий мы направляем на благотворительность.
+            </p>
+
+            <p>
+                Нам важно, чтобы созданное своими руками тепло могло стать частью ещё одной доброй истории.
+            </p>
+
+            <p>
+                Мы будем рассказывать о наших благотворительных проектах и показывать, куда отправляется помощь.
+            </p>
+
+            <button class="main-button">
+                Узнать больше
+            </button>
+
+        </div>
+
+
+        <div class="charity-image">
+
+            <img
+                src="file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/rebenok.png"
+                alt="Подарок ребёнку"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW TO ORDER
+========================================================= -->
+
+<section class="order-section">
+
+    <div class="section-label">
+        Маленький шаг
+    </div>
+
+    <h2 class="section-title">
+        Как заказать?
+    </h2>
+
+
+    <div class="order-grid">
+
+
+        <div class="order-card">
+
+            <h3>
+                Нашли то, что искали?
+            </h3>
+
+            <p>
+                Если понравилась игрушка, которая уже есть в каталоге, добавьте её в корзину и оформите заказ.
+            </p>
+
+            <p>
+                После оформления с вами свяжется наш сотрудник, чтобы уточнить детали заказа.
+            </p>
+
+            <a
+                href="#catalog"
+                class="main-button"
+            >
+                Перейти в каталог
+            </a>
+
+        </div>
+
+
+        <div class="order-card">
+
+            <h3>
+                Не нашли желаемое?
+            </h3>
+
+            <p>
+                Создайте свою игрушку вместе с нами — расскажите, какой вы её представляете, а мы поможем воплотить вашу идею.
+            </p>
+
+            <a
+                href="javascript:void(0)"
+                class="main-button"
+                onclick="openCustomToyForm()"
+            >
+                Создать свою игрушку
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACTS
+========================================================= -->
+
+<section
+    class="social-section"
+    id="contacts"
+>
+
+    <div class="section-label">
+        Будем рядом
+    </div>
+
+    <h2 class="section-title">
+        Следите за нашей сказкой
+    </h2>
+
+
+    <div class="socials">
+
+
+        <a
+            href="https://t.me/aYarnTale"
+            class="social"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="social-circle">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M21 3 3.7 10.1c-.9.4-.9 1.1-.2 1.4l4.4 1.7 1.7 5.3c.2.6.4.7.8.7.3 0 .5-.1.7-.3l2.4-2.3 4.9 3.6c.9.5 1.5.1 1.7-.9L21.9 4c.2-.9-.3-1.3-.9-1Z"
+                    />
+
+                </svg>
+
+            </div>
+
+            <span>
+                Telegram
+            </span>
+
+        </a>
+
+
+        <a
+            href="https://www.instagram.com/floffy_knit"
+            class="social"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div class="social-circle">
+
+                <svg viewBox="0 0 24 24">
+
+                    <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                    />
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                    />
+
+                    <circle
+                        cx="17.4"
+                        cy="6.7"
+                        r="0.8"
+                        fill="#59463a"
+                        stroke="none"
+                    />
+
+                </svg>
+
+            </div>
+
+            <span>
+                Instagram
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        Пряжная сказка
+    </div>
+
+    <div class="footer-links">
+
+        <a href="#home">
+            Главная
+        </a>
+
+        <a href="#catalog">
+            Каталог
+        </a>
+
+        <a href="#about">
+            О нас
+        </a>
+
+        <a href="#contacts">
+            Контакты
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   БАЗА ТОВАРОВ
+
+   ПОКА ИСПОЛЬЗУЕМ СМАЙЛЫ.
+   ПОТОМ ЗДЕСЬ БУДЕМ МЕНЯТЬ ИХ НА ФОТОГРАФИИ.
+========================================================= */
+
+const products = {
+
+    toys: {
+        title: "Игрушки из хлопка",
+
+        items: [
+
+            {
+                id: "toy-1",
+                name: "Львёнок",
+                price: 2500,
+                image: "file:///C:/Users/Илаха/Desktop/Пряжная%20сказка/image/lev.jpg",
+            },
+
+            {
+                id: "toy-2",
+                name: "Милый мишка",
+                price: 1500,
+                emoji: "🧸"
+            },
+
+            {
+                id: "toy-3",
+                name: "Лисёнок",
+                price: 1400,
+                emoji: "🦊"
+            },
+
+            {
+                id: "toy-4",
+                name: "Совёнок",
+                price: 1300,
+                emoji: "🦉"
+            },
+
+            {
+                id: "toy-5",
+                name: "Ёжик",
+                price: 1250,
+                emoji: "🦔"
+            },
+
+            {
+                id: "toy-6",
+                name: "Белочка",
+                price: 1350,
+                emoji: "🐿️"
+            },
+
+            {
+                id: "toy-7",
+                name: "Медвежонок",
+                price: 1550,
+                emoji: "🐻"
+            },
+
+            {
+                id: "toy-8",
+                name: "Котёнок",
+                price: 1400,
+                emoji: "🐱"
+            },
+
+            {
+                id: "toy-9",
+                name: "Лягушонок",
+                price: 1250,
+                emoji: "🐸"
+            },
+
+            {
+                id: "toy-10",
+                name: "Пингвинёнок",
+                price: 1450,
+                emoji: "🐧"
+            }
+
+        ]
+    },
+
+
+    gifts: {
+        title: "Подарочные наборы",
+
+        items: [
+
+            {
+                id: "gift-1",
+                name: "Набор «Нежность»",
+                price: 2500,
+                emoji: "🎁"
+            },
+
+            {
+                id: "gift-2",
+                name: "Набор «Тепло»",
+                price: 2800,
+                emoji: "🎀"
+            },
+
+            {
+                id: "gift-3",
+                name: "Набор для малыша",
+                price: 3200,
+                emoji: "👶"
+            },
+
+            {
+                id: "gift-4",
+                name: "Подарок для неё",
+                price: 2900,
+                emoji: "💝"
+            },
+
+            {
+                id: "gift-5",
+                name: "Подарок для него",
+                price: 2900,
+                emoji: "🎁"
+            },
+
+            {
+                id: "gift-6",
+                name: "Свадебный набор",
+                price: 3500,
+                emoji: "💍"
+            },
+
+            {
+                id: "gift-7",
+                name: "Новогодний набор",
+                price: 3000,
+                emoji: "🎄"
+            },
+
+            {
+                id: "gift-8",
+                name: "Весенний набор",
+                price: 2700,
+                emoji: "🌷"
+            },
+
+            {
+                id: "gift-9",
+                name: "Сказочный набор",
+                price: 3300,
+                emoji: "✨"
+            },
+
+            {
+                id: "gift-10",
+                name: "Особенный подарок",
+                price: 4000,
+                emoji: "🎀"
+            }
+
+        ]
+    },
+
+
+    keychains: {
+        title: "Брелоки",
+
+        items: [
+
+            {
+                id: "key-1",
+                name: "Зайчик",
+                price: 650,
+                emoji: "🐰"
+            },
+
+            {
+                id: "key-2",
+                name: "Котёнок",
+                price: 650,
+                emoji: "🐱"
+            },
+
+            {
+                id: "key-3",
+                name: "Лисёнок",
+                price: 700,
+                emoji: "🦊"
+            },
+
+            {
+                id: "key-4",
+                name: "Мишка",
+                price: 700,
+                emoji: "🧸"
+            },
+
+            {
+                id: "key-5",
+                name: "Сердечко",
+                price: 500,
+                emoji: "❤️"
+            },
+
+            {
+                id: "key-6",
+                name: "Звёздочка",
+                price: 500,
+                emoji: "⭐"
+            },
+
+            {
+                id: "key-7",
+                name: "Пчёлка",
+                price: 650,
+                emoji: "🐝"
+            },
+
+            {
+                id: "key-8",
+                name: "Грибочек",
+                price: 600,
+                emoji: "🍄"
+            },
+
+            {
+                id: "key-9",
+                name: "Лягушонок",
+                price: 650,
+                emoji: "🐸"
+            },
+
+            {
+                id: "key-10",
+                name: "Облачко",
+                price: 550,
+                emoji: "☁️"
+            }
+
+        ]
+    },
+
+
+    dolls: {
+        title: "Куклы",
+
+        items: [
+
+            {
+                id: "doll-1",
+                name: "Маленькая фея",
+                price: 2200,
+                emoji: "🧚"
+            },
+
+            {
+                id: "doll-2",
+                name: "Лесная девочка",
+                price: 2400,
+                emoji: "👧"
+            },
+
+            {
+                id: "doll-3",
+                name: "Принцесса",
+                price: 2600,
+                emoji: "👸"
+            },
+
+            {
+                id: "doll-4",
+                name: "Балерина",
+                price: 2500,
+                emoji: "🩰"
+            },
+
+            {
+                id: "doll-5",
+                name: "Маленький принц",
+                price: 2500,
+                emoji: "🤴"
+            },
+
+            {
+                id: "doll-6",
+                name: "Кукла в платье",
+                price: 2300,
+                emoji: "👗"
+            },
+
+            {
+                id: "doll-7",
+                name: "Русалочка",
+                price: 2700,
+                emoji: "🧜‍♀️"
+            },
+
+            {
+                id: "doll-8",
+                name: "Волшебница",
+                price: 2800,
+                emoji: "🪄"
+            },
+
+            {
+                id: "doll-9",
+                name: "Сказочная девочка",
+                price: 2400,
+                emoji: "🌸"
+            },
+
+            {
+                id: "doll-10",
+                name: "Принцесса мечты",
+                price: 3000,
+                emoji: "👑"
+            }
+
+        ]
+    },
+
+
+    plush: {
+        title: "Плюшевые игрушки",
+
+        items: [
+
+            {
+                id: "plush-1",
+                name: "Плюшевый зайчик",
+                price: 2200,
+                emoji: "🐇"
+            },
+
+            {
+                id: "plush-2",
+                name: "Плюшевый мишка",
+                price: 2500,
+                emoji: "🧸"
+            },
+
+            {
+                id: "plush-3",
+                name: "Плюшевый единорог",
+                price: 3000,
+                emoji: "🦄"
+            },
+
+            {
+                id: "plush-4",
+                name: "Плюшевая лисичка",
+                price: 2400,
+                emoji: "🦊"
+            },
+
+            {
+                id: "plush-5",
+                name: "Плюшевый котик",
+                price: 2300,
+                emoji: "🐈"
+            },
+
+            {
+                id: "plush-6",
+                name: "Плюшевая панда",
+                price: 2600,
+                emoji: "🐼"
+            },
+
+            {
+                id: "plush-7",
+                name: "Плюшевый лев",
+                price: 2800,
+                emoji: "🦁"
+            },
+
+            {
+                id: "plush-8",
+                name: "Плюшевый слонёнок",
+                price: 2700,
+                emoji: "🐘"
+            },
+
+            {
+                id: "plush-9",
+                name: "Плюшевая коала",
+                price: 2600,
+                emoji: "🐨"
+            },
+
+            {
+                id: "plush-10",
+                name: "Плюшевый дракончик",
+                price: 2900,
+                emoji: "🐲"
+            }
+
+        ]
+    }
+
+};
+
+
+/* =========================================================
+   КОРЗИНА
+========================================================= */
+
+let cart = JSON.parse(
+    localStorage.getItem("pryazhnayaSkazkaCart")
+) || [];
+
+
+/* =========================================================
+   ТЕКУЩАЯ КАТЕГОРИЯ
+========================================================= */
+
+let currentCategory = null;
+
+
+/* =========================================================
+   ТЕКУЩИЙ ТОВАР
+========================================================= */
+
+let currentProduct = null;
+
+
+/* =========================================================
+   СОХРАНЕНИЕ КОРЗИНЫ
+========================================================= */
+
+function saveCart() {
+
+    localStorage.setItem(
+        "pryazhnayaSkazkaCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* =========================================================
+   ОТКРЫТЬ КАТЕГОРИЮ
+========================================================= */
+
+function openCategory(category) {
+
+    currentCategory = category;
+
+    const categoryData =
+        products[category];
+
+    if (!categoryData) {
+        return;
+    }
+
+
+    document.getElementById("productsTitle").textContent =
+        categoryData.title;
+
+
+    const grid =
+        document.getElementById("productsGrid");
+
+    grid.innerHTML = "";
+
+
+    categoryData.items.forEach(product => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "product-card";
+
+        card.onclick = function() {
+
+            openProductDetail(
+                category,
+                product.id
+            );
+
+        };
+
+
+        card.innerHTML = `
+
+            <div class="product-image">
+                ${product.image ? `<img src="${product.image}" alt="${product.name}">` : (product.emoji || "")}
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    ${product.name}
+                </div>
+
+                <div class="product-price">
+                    ${formatPrice(product.price)}
+                </div>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+
+    document
+        .getElementById("productsOverlay")
+        .classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* =========================================================
+   ЗАКРЫТЬ КАТЕГОРИЮ
+========================================================= */
+
+function closeCategory() {
+
+    document
+        .getElementById("productsOverlay")
+        .classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================================
+   ОТКРЫТЬ БОЛЬШУЮ КАРТОЧКУ
+========================================================= */
+
+function openProductDetail(
+    category,
+    productId
+) {
+
+    const categoryData =
+        products[category];
+
+    if (!categoryData) {
+        return;
+    }
+
+
+    const product =
+        categoryData.items.find(
+            item => item.id === productId
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    currentProduct = {
+        category: category,
+        product: product
+    };
+
+
+    document.getElementById("detailImage").innerHTML = product.image
+    ? `<img src="${product.image}" alt="${product.name}">`
+    : (product.emoji || "");
+
+
+    document.getElementById(
+        "detailCategory"
+    ).textContent = categoryData.title;
+
+
+    document.getElementById(
+        "detailName"
+    ).textContent = product.name;
+
+
+    document.getElementById(
+        "detailPrice"
+    ).textContent = formatPrice(product.price);
+
+
+    document.getElementById(
+        "detailAddButton"
+    ).onclick = function() {
+
+        addToCart(
+            category,
+            product.id
+        );
+
+    };
+
+
+    document
+        .getElementById("productDetailOverlay")
+        .classList.add("active");
+
+}
+
+
+/* =========================================================
+   ЗАКРЫТЬ КАРТОЧКУ
+========================================================= */
+
+function closeProductDetail() {
+
+    document
+        .getElementById("productDetailOverlay")
+        .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   ДОБАВИТЬ В КОРЗИНУ
+========================================================= */
+
+function addToCart(
+    category,
+    productId
+) {
+
+    const categoryData =
+        products[category];
+
+    if (!categoryData) {
+        return;
+    }
+
+
+    const product =
+        categoryData.items.find(
+            item => item.id === productId
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    const existing =
+        cart.find(
+            item => item.id === product.id
+        );
+
+
+    if (existing) {
+
+        existing.quantity += 1;
+
+    } else {
+
+        cart.push({
+    id: product.id,
+    category: category,
+    name: product.name,
+    price: product.price,
+    emoji: product.emoji,
+    image: product.image,
+    quantity: 1
+});
+
+    }
+
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+
+    closeProductDetail();
+
+    closeCategory();
+
+}
+
+
+/* =========================================================
+   ОБНОВИТЬ СЧЁТЧИК КОРЗИНЫ
+========================================================= */
+
+function updateCartCount() {
+
+    const count =
+        cart.reduce(
+            (total, item) =>
+                total + item.quantity,
+            0
+        );
+
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+
+    cartCount.textContent = count;
+
+
+    if (count > 0) {
+
+        cartCount.classList.add("active");
+
+    } else {
+
+        cartCount.classList.remove("active");
+
+    }
+
+}
+
+
+/* =========================================================
+   ОТКРЫТЬ КОРЗИНУ
+========================================================= */
+
+function openCart() {
+
+    renderCart();
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* =========================================================
+   ЗАКРЫТЬ КОРЗИНУ
+========================================================= */
+
+function closeCart() {
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================================
+   ОТРИСОВКА КОРЗИНЫ
+========================================================= */
+
+function renderCart() {
+
+    const itemsContainer =
+        document.getElementById("cartItems");
+
+    const empty =
+        document.getElementById("cartEmpty");
+
+    const bottom =
+        document.getElementById("cartBottom");
+
+    const totalElement =
+        document.getElementById("cartTotal");
+
+
+    itemsContainer.innerHTML = "";
+
+
+    if (cart.length === 0) {
+
+        empty.style.display = "block";
+
+        bottom.style.display = "none";
+
+        return;
+
+    }
+
+
+    empty.style.display = "none";
+
+    bottom.style.display = "flex";
+
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+        const itemTotal =
+            item.price * item.quantity;
+
+
+        total += itemTotal;
+
+
+        const cartItem =
+            document.createElement("div");
+
+        cartItem.className = "cart-item";
+
+
+        cartItem.innerHTML = `
+
+            <div class="cart-item-image">
+    ${item.image ? `<img src="${item.image}" alt="${item.name}">` : (item.emoji || "")}
+</div>
+
+            <div>
+
+                <div class="cart-item-name">
+                    ${item.name}
+                </div>
+
+                <div class="cart-item-price">
+                    ${formatPrice(item.price)} за шт.
+                </div>
+
+            </div>
+
+
+            <div class="quantity-control">
+
+                <button
+                    class="quantity-button"
+                    onclick="changeQuantity('${item.id}', -1)"
+                >
+                    −
+                </button>
+
+                <span class="quantity-value">
+                    ${item.quantity}
+                </span>
+
+                <button
+                    class="quantity-button"
+                    onclick="changeQuantity('${item.id}', 1)"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <div class="cart-item-total">
+                ${formatPrice(itemTotal)}
+            </div>
+
+
+            <button
+                class="remove-cart-item"
+                onclick="removeFromCart('${item.id}')"
+                aria-label="Удалить товар"
+            >
+                ×
+            </button>
+
+        `;
+
+
+        itemsContainer.appendChild(cartItem);
+
+    });
+
+
+    totalElement.textContent =
+        formatPrice(total);
+
+}
+
+
+/* =========================================================
+   ИЗМЕНИТЬ КОЛИЧЕСТВО
+========================================================= */
+
+function changeQuantity(
+    productId,
+    change
+) {
+
+    const item =
+        cart.find(
+            item => item.id === productId
+        );
+
+
+    if (!item) {
+        return;
+    }
+
+
+    item.quantity += change;
+
+
+    if (item.quantity <= 0) {
+
+        cart =
+            cart.filter(
+                item => item.id !== productId
+            );
+
+    }
+
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+}
+
+
+/* =========================================================
+   УДАЛИТЬ ТОВАР
+========================================================= */
+
+function removeFromCart(productId) {
+
+    cart =
+        cart.filter(
+            item => item.id !== productId
+        );
+
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+}
+
+
+/* =========================================================
+   ФОРМАТ ЦЕНЫ
+========================================================= */
+
+function formatPrice(price) {
+
+    return new Intl.NumberFormat(
+        "ru-RU"
+    ).format(price) + " ₽";
+
+}
+
+
+/* =========================================================
+   ОФОРМЛЕНИЕ ЗАКАЗА
+========================================================= */
+
+function checkout() {
+
+    if (cart.length === 0) {
+        return;
+    }
+
+
+    alert(
+        "Спасибо! Здесь позже будет оформление заказа."
+    );
+
+}
+
+
+/* =========================================================
+   ПОДАРОЧНЫЙ АЛЬБОМ
+========================================================= */
+
+
+/* =========================================================
+   СОЗДАТЬ СВОЮ ИГРУШКУ
+========================================================= */
+
+function openCustomToyForm() {
+    const modal = document.getElementById("customToyModal");
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeCustomToyForm() {
+    const modal = document.getElementById("customToyModal");
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+
+function submitCustomToyForm() {
+    const type =
+        document.getElementById("customToyType").value.trim();
+
+    const size =
+        document.getElementById("customToySize").value.trim();
+
+    const colors =
+        document.getElementById("customToyColors").value.trim();
+
+    const material =
+        document.getElementById("customToyMaterial").value.trim();
+
+
+    if (!type || !size || !colors || !material) {
+        alert("Пожалуйста, заполните все поля.");
+        return;
+    }
+
+
+    alert(
+        "Спасибо! Ваша заявка принята.\n\n" +
+        "Игрушка: " + type + "\n" +
+        "Размер: " + size + "\n" +
+        "Цвета: " + colors + "\n" +
+        "Материал: " + material
+    );
+
+
+    document.getElementById("customToyType").value = "";
+    document.getElementById("customToySize").value = "";
+    document.getElementById("customToyColors").value = "";
+    document.getElementById("customToyMaterial").value = "";
+
+    closeCustomToyForm();
+}
+
+
+
+/* =========================================================
+   ПОИСК ПО ВСЕМУ КАТАЛОГУ
+========================================================= */
+
+function openSearch() {
+
+    const overlay = document.getElementById("searchOverlay");
+    const input = document.getElementById("catalogSearchInput");
+
+    if (!overlay) return;
+
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    document.getElementById("searchHint").style.display = "block";
+    document.getElementById("searchResults").innerHTML = "";
+
+    setTimeout(function() {
+        if (input) input.focus();
+    }, 50);
+}
+
+
+function closeSearch() {
+
+    const overlay = document.getElementById("searchOverlay");
+
+    if (!overlay) return;
+
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+
+function searchCatalog() {
+
+    const input = document.getElementById("catalogSearchInput");
+    const results = document.getElementById("searchResults");
+    const hint = document.getElementById("searchHint");
+
+    if (!input || !results || !hint) return;
+
+    const query = input.value
+        .trim()
+        .toLowerCase()
+        .replace(/ё/g, "е");
+
+    results.innerHTML = "";
+
+    if (!query) {
+        hint.style.display = "block";
+        return;
+    }
+
+    hint.style.display = "none";
+
+    const found = [];
+
+    Object.keys(products).forEach(function(category) {
+
+        const categoryData = products[category];
+
+        if (!categoryData || !Array.isArray(categoryData.items)) return;
+
+        categoryData.items.forEach(function(product) {
+
+            const name = String(product.name || "")
+                .toLowerCase()
+                .replace(/ё/g, "е");
+
+            const categoryTitle = String(categoryData.title || "")
+                .toLowerCase()
+                .replace(/ё/g, "е");
+
+            if (
+                name.includes(query) ||
+                categoryTitle.includes(query)
+            ) {
+                found.push({
+                    category: category,
+                    categoryTitle: categoryData.title,
+                    product: product
+                });
+            }
+        });
+    });
+
+    if (found.length === 0) {
+
+        results.innerHTML = `
+            <div class="search-no-results">
+                По вашему запросу ничего не найдено.<br>
+                Попробуйте другое название.
+            </div>
+        `;
+
+        return;
+    }
+
+    found.forEach(function(item) {
+
+        const product = item.product;
+        const card = document.createElement("div");
+
+        card.className = "search-result-card";
+
+        const image = product.image
+            ? `<img src="${product.image}" alt="${product.name}">`
+            : (product.emoji || "");
+
+        card.innerHTML = `
+            <div class="search-result-image">
+                ${image}
+            </div>
+
+            <div class="search-result-info">
+
+                <div class="search-result-name">
+                    ${product.name}
+                </div>
+
+                <div class="search-result-category">
+                    ${item.categoryTitle}
+                </div>
+
+                <div class="search-result-price">
+                    ${formatPrice(product.price)}
+                </div>
+
+            </div>
+        `;
+
+        card.addEventListener("click", function() {
+
+            closeSearch();
+
+            openProductDetail(
+                item.category,
+                product.id
+            );
+
+        });
+
+        results.appendChild(card);
+    });
+}
+
+
+function openGiftBook() {
+
+    const book =
+        document.getElementById("giftBook");
+
+    book.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeGiftBook() {
+
+    const book =
+        document.getElementById("giftBook");
+
+    book.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+function nextGiftPage() {
+
+    return;
+
+}
+
+
+function previousGiftPage() {
+
+    return;
+
+}
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+        const searchOverlay =
+            document.getElementById("searchOverlay");
+
+        if (
+            searchOverlay &&
+            searchOverlay.classList.contains("active")
+        ) {
+            closeSearch();
+            return;
+        }
+
+
+
+        const book =
+            document.getElementById("giftBook");
+
+        const productsOverlay =
+            document.getElementById("productsOverlay");
+
+        const productDetail =
+            document.getElementById("productDetailOverlay");
+
+        const cartOverlay =
+            document.getElementById("cartOverlay");
+
+        const customToyModal =
+            document.getElementById("customToyModal");
+
+
+        if (customToyModal && customToyModal.classList.contains("active")) {
+            closeCustomToyForm();
+            return;
+        }
+
+
+        if (book.classList.contains("active")) {
+
+            closeGiftBook();
+
+            return;
+
+        }
+
+
+        if (
+            productDetail.classList.contains("active")
+        ) {
+
+            closeProductDetail();
+
+            return;
+
+        }
+
+
+        if (
+            productsOverlay.classList.contains("active")
+        ) {
+
+            closeCategory();
+
+            return;
+
+        }
+
+
+        if (
+            cartOverlay.classList.contains("active")
+        ) {
+
+            closeCart();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   КЛИК ПО ФОНУ МОДАЛЬНОГО ОКНА
+========================================================= */
+
+document
+    .getElementById("searchOverlay")
+    .addEventListener(
+        "click",
+        function(event) {
+            if (event.target === this) {
+                closeSearch();
+            }
+        }
+    );
+
+
+document
+    .getElementById("customToyModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+                closeCustomToyForm();
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   КЛИК ПО ФОНУ КАТАЛОГА
+========================================================= */
+
+document
+    .getElementById("productsOverlay")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                closeCategory();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   КЛИК ПО ФОНУ КАРТОЧКИ
+========================================================= */
+
+document
+    .getElementById("productDetailOverlay")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                closeProductDetail();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   КЛИК ПО ФОНУ КОРЗИНЫ
+========================================================= */
+
+document
+    .getElementById("cartOverlay")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                closeCart();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   КЛИК ПО ФОНУ ПОДАРОЧНОГО АЛЬБОМА
+========================================================= */
+
+document
+    .getElementById("giftBook")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                closeGiftBook();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   АНИМАЦИЯ СЕКЦИЙ
+========================================================= */
+
+const animatedElements =
+    document.querySelectorAll("section");
+
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.style.opacity =
+                            "1";
+
+                        entry.target.style.transform =
+                            "translateY(0)";
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: 0.08
+        }
+
+    );
+
+
+animatedElements.forEach(
+    section => {
+
+        section.style.opacity = "0";
+
+        section.style.transform =
+            "translateY(20px)";
+
+        section.style.transition =
+            "opacity 0.8s ease, transform 0.8s ease";
+
+        observer.observe(section);
+
+    }
+);
+
+
+/* =========================================================
+   ПЕРВОНАЧАЛЬНЫЙ СЧЁТЧИК КОРЗИНЫ
+========================================================= */
+
+updateCartCount();
+
+renderCart();
+
+</script>
+
+
+</body>
+</html>
+```
